@@ -1,3 +1,3 @@
 # ER Diagram
 
-![ER Diagram](https://www.plantuml.com/plantuml/png/hPBHQi8m58Rl-nIv7lG5YeXbPgvCHLm6s-N176EWIIGvdOZktTV5YOamDc6zANpz3YV_tum2WQVEj0LQqhHdBm5zO8U2zSzT8rd5chdW4xvaWy7YQJYC7yeolhvS2mPxIV1N4Ta2GjWvBnyXR5BE3UWs1KlNPeFt7e5GrjJ3SIsuQ6Qy-2ZEvvgXrD0GcbiETwKyd1MXAL_-Xk0lwidPRpDbWjPdeEveutnAnXXMNcz9Evib1T9MzMJ9wsaapmJKXIozUqVV652u0DhSq8i0zST6BXN-LCiy-PUN3LEd_gFpNxVNg-lYna1ubVfqFO_7id7z4vKpEriA1BoxSH-AaQW5CfyF0Qhs1RzsdcJ3US6hDUuedvyX5Psflq4)
+![ER Diagram](docs/er_diagram.png)
