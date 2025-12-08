@@ -1,0 +1,50 @@
+@startuml
+
+entity Users {
+    * Id : INTEGER <<PK>>
+    --
+    Username : TEXT
+    PasswordHash : TEXT
+    Email : TEXT
+    Role : TEXT
+    CreatedAt : DATETIME
+}
+
+entity MediaItems {
+    * Id : INTEGER <<PK>>
+    --
+    UserId : INTEGER <<FK>>
+    Title : TEXT
+    Year : INTEGER
+    Type : TEXT
+    Genre : TEXT
+    Author : TEXT
+    Description : TEXT
+    Rating : REAL
+    Status : TEXT
+    CoverImagePath : TEXT
+    CreatedAt : DATETIME
+}
+
+entity Tags {
+    * Id : INTEGER <<PK>>
+    --
+    MediaItemId : INTEGER <<FK>>
+    Name : TEXT
+}
+
+entity Logs {
+    * Id : INTEGER <<PK>>
+    --
+    UserId : INTEGER <<FK>>
+    MediaItemId : INTEGER <<FK>>
+    Action : TEXT
+    Date : DATETIME
+}
+
+Users ||--o{ MediaItems : "owns"
+MediaItems ||--o{ Tags : "tagged"
+Users ||--o{ Logs : "performs"
+MediaItems ||--o{ Logs : "logged"
+
+@enduml
