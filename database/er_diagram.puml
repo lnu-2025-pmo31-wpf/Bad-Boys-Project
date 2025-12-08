@@ -1,0 +1,48 @@
+@startuml
+entity "Users" as U {
+  *Id : INTEGER
+  --
+  Username : TEXT
+  PasswordHash : TEXT
+  Email : TEXT
+  Role : TEXT
+  CreatedAt : DATETIME
+}
+
+entity "MediaItems" as M {
+  *Id : INTEGER
+  --
+  UserId : INTEGER
+  Title : TEXT
+  Year : INTEGER
+  Type : TEXT
+  Genre : TEXT
+  Author : TEXT
+  Description : TEXT
+  Rating : REAL
+  Status : TEXT
+  CoverImagePath : TEXT
+  CreatedAt : DATETIME
+}
+
+entity "Tags" as T {
+  *Id : INTEGER
+  --
+  MediaItemId : INTEGER
+  Name : TEXT
+}
+
+entity "Logs" as L {
+  *Id : INTEGER
+  --
+  UserId : INTEGER
+  MediaItemId : INTEGER
+  Action : TEXT
+  Date : DATETIME
+}
+
+U ||--o{ M : owns
+M ||--o{ T : has
+U ||--o{ L : performs
+M ||--o{ L : target
+@enduml
