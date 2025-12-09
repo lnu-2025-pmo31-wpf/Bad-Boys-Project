@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj": {}
+    "C:\\Git\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj": {
+    "C:\\Git\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj",
+        "projectUniqueName": "C:\\Git\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj",
         "projectName": "Console.Seeder",
-        "projectPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj",
-        "packagesPath": "C:\\Users\\38097\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.Seeder\\obj\\",
+        "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\Console.Seeder\\Console.Seeder.csproj",
+        "packagesPath": "C:\\Users\\Денис\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\Bad-Boys-Project\\src\\Console.Seeder\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\38097\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Денис\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -38,7 +38,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -65,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

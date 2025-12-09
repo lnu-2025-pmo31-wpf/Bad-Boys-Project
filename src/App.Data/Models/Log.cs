@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 namespace App.Data.Models
 {
     public class Log
