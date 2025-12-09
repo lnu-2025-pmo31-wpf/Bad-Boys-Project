@@ -4,8 +4,8 @@ namespace App.Data.Models
     {
         public int Id { get; set; }
         public int MediaItemId { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
-        public MediaItem MediaItem { get; set; }
+        public MediaItem? MediaItem { get; set; }
     }
 }

@@ -1,4 +1,3 @@
-// src/Console.Seeder/Program.cs
 using Microsoft.Data.Sqlite;
 using System;
 using System.IO;
@@ -24,12 +23,6 @@ class Program
         {
             var sqlFile = Path.Combine("..", "..", "database", "create_db.sql");
             if (!File.Exists(sqlFile)) sqlFile = Path.Combine("database", "create_db.sql");
-            if (!File.Exists(sqlFile))
-            {
-                Console.WriteLine("ERROR: create_db.sql not found. Expected at database/create_db.sql");
-                return;
-            }
-
             var sql = File.ReadAllText(sqlFile);
             using var conn = new SqliteConnection(ConnStr);
             conn.Open();
@@ -127,3 +120,4 @@ class Program
         Console.WriteLine("Media items seeded.");
     }
 }
+

@@ -5,26 +5,24 @@ namespace App.Data
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<MediaItem> MediaItems { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<Log> Logs { get; set; }
-
-        private readonly string _connectionString;
+        public DbSet<User> Users => Set<User>();
+        public DbSet<MediaItem> MediaItems => Set<MediaItem>();
+        public DbSet<Tag> Tags => Set<Tag>();
+        public DbSet<Log> Logs => Set<Log>();
 
         public AppDbContext()
         {
-            // default path - файл media.db у корені проекту Console.EFTest при запуску
-            _connectionString = "Data Source=media.db";
         }
 
-        public AppDbContext(string connectionString)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            _connectionString = connectionString;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(_connectionString);
+        {
+            if (!options.IsConfigured)
+                options.UseSqlite("Data Source=media.db");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
