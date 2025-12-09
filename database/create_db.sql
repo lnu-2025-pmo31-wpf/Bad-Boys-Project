@@ -1,4 +1,3 @@
--- create_db.sql
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS Users (
@@ -42,3 +41,4 @@ CREATE TABLE IF NOT EXISTS Logs (
     FOREIGN KEY (UserId) REFERENCES Users (Id),
     FOREIGN KEY (MediaItemId) REFERENCES MediaItems (Id)
 );
+
