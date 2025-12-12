@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Git\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\
+C:\Users\Андрій\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\
 BadBoys.Presentation.WPF
 none
 false
-TRACE;DEBUG;NET;NET9_0;NETCOREAPP
-C:\Git\Bad-Boys-Project\src\BadBoys.Presentation.WPF\App.xaml
-3-1532699001
+TRACE;DEBUG;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\Андрій\Bad-Boys-Project\src\BadBoys.Presentation.WPF\App.xaml
+4-1262420660
 
-101556275950
-222343051298
-MainWindow.xaml;Views\EditMediaWindow.xaml;Views\MediaListPage.xaml;
+11-565342376
+221-914160356
+MainWindow.xaml;Views\EditMediaWindow.xaml;Views\MediaListPage.xaml;Views\MediaListView.xaml;
 
 False
 
