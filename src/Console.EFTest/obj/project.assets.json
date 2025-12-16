@@ -489,20 +489,6 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
-      },
-      "App.Data/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.0",
-          "Microsoft.EntityFrameworkCore.Sqlite": "7.0.0"
-        },
-        "compile": {
-          "bin/placeholder/App.Data.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/App.Data.dll": {}
-        }
       }
     }
   },
@@ -1140,37 +1126,31 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "App.Data/1.0.0": {
-      "type": "project",
-      "path": "../App.Data/App.Data.csproj",
-      "msbuildProject": "../App.Data/App.Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "App.Data >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Денис\\.nuget\\packages\\": {},
+    "C:\\Users\\38097\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git\\Bad-Boys-Project\\src\\Console.EFTest\\Console.EFTest.csproj",
+      "projectUniqueName": "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.EFTest\\Console.EFTest.csproj",
       "projectName": "Console.EFTest",
-      "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\Console.EFTest\\Console.EFTest.csproj",
-      "packagesPath": "C:\\Users\\Денис\\.nuget\\packages\\",
-      "outputPath": "C:\\Git\\Bad-Boys-Project\\src\\Console.EFTest\\obj\\",
+      "projectPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.EFTest\\Console.EFTest.csproj",
+      "packagesPath": "C:\\Users\\38097\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\Console.EFTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Денис\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\38097\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1184,11 +1164,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\App.Data.csproj": {
-              "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\App.Data.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -1201,7 +1177,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -1223,12 +1199,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

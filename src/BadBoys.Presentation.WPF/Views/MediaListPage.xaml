@@ -4,34 +4,33 @@
       xmlns:vm="clr-namespace:BadBoys.Presentation.WPF.ViewModels"
       Title="MediaList">
 
-    <Page.DataContext>
-        <vm:MediaListViewModel/>
-    </Page.DataContext>
-
     <Grid Margin="10">
         <DockPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
-                <Button Content="Refresh" Command="{Binding RefreshCommand}" Width="80" Margin="0,0,10,0"/>
-                <Button Content="Add" Command="{Binding AddCommand}" Width="80"/>
+
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0 0 0 10">
+                <Button Content="Refresh" Command="{Binding RefreshCommand}" Width="90" Margin="0 0 10 0"/>
+                <Button Content="Add" Command="{Binding AddCommand}" Width="90"/>
             </StackPanel>
 
-            <ListView x:Name="MediaListView" ItemsSource="{Binding Items}">
+            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="50"/>
-                        <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200"/>
-                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="100"/>
-                        <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="80"/>
+                        <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Title" Width="200" DisplayMemberBinding="{Binding Title}" />
+                        <GridViewColumn Header="Type" Width="120" DisplayMemberBinding="{Binding Type}" />
+                        <GridViewColumn Header="Rating" Width="80" DisplayMemberBinding="{Binding Rating}" />
                     </GridView>
                 </ListView.View>
 
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Відкрити" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType=ListView}}"/>
-                        <MenuItem Header="Видалити" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Page}}" CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                        <MenuItem Header="Edit" Command="{Binding EditCommand}"/>
+                        <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
+
             </ListView>
+
         </DockPanel>
     </Grid>
 </Page>

@@ -92,9 +92,9 @@ C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\Bad
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys.BLL.Tests.AssemblyInfo.cs
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys.BLL.Tests.csproj.CoreCompileInputs.cache
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys.BLL.Tests.sourcelink.json
-C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys.BLL.Tests.csproj.CopyComplete
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys.BLL.Tests.dll
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\refint\BadBoys.BLL.Tests.dll
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys.BLL.Tests.pdb
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys.BLL.Tests.genruntimeconfig.cache
 C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\ref\BadBoys.BLL.Tests.dll
+C:\Users\38097\Bad-Boys-Project\src\tests\BadBoys.BLL.Tests\obj\Debug\net8.0\BadBoys..80019411.Up2Date

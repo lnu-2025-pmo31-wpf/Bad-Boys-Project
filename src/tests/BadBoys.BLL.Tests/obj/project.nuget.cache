@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2W710KMYNJIv3Oowiscbe1wt/IOkQk9Nm2adW2EhcNobGekvVMyB9abixM6Zmu4b76sfIzJEz3fGqoTMBPB5CA==",
+  "dgSpecHash": "The9BC0meYQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\tests\\BadBoys.BLL.Tests\\BadBoys.BLL.Tests.csproj",
   "expectedPackageFiles": [
@@ -92,7 +92,10 @@
     "C:\\Users\\38097\\.nuget\\packages\\xunit.core\\2.4.2\\xunit.core.2.4.2.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\xunit.extensibility.core\\2.4.2\\xunit.extensibility.core.2.4.2.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\xunit.extensibility.execution\\2.4.2\\xunit.extensibility.execution.2.4.2.nupkg.sha512",
-    "C:\\Users\\38097\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512"
+    "C:\\Users\\38097\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512",
+    "C:\\Users\\38097\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\38097\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\38097\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
   ],
   "logs": []
 }

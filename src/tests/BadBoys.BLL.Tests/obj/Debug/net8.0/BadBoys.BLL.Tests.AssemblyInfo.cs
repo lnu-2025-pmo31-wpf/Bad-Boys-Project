@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BadBoys.BLL.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d7aca76b64ed1fdc025bc1d7ef4d080a3fe4b6a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+751d8a4dc137cc1d9ddbeef1c073dadaaffbef96")]
 [assembly: System.Reflection.AssemblyProductAttribute("BadBoys.BLL.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BadBoys.BLL.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

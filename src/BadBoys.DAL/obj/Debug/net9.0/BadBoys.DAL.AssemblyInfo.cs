@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BadBoys.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+219709806f102c76d3ef69e932a19031cbaf7553")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+751d8a4dc137cc1d9ddbeef1c073dadaaffbef96")]
 [assembly: System.Reflection.AssemblyProductAttribute("BadBoys.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BadBoys.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

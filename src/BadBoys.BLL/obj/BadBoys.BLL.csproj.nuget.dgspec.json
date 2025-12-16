@@ -1,118 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj": {}
+    "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj": {}
   },
   "projects": {
-    "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\App.Data.csproj": {
+    "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\App.Data.csproj",
-        "projectName": "App.Data",
-        "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\App.Data.csproj",
-        "packagesPath": "C:\\Users\\Денис\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\Денис\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            }
-          ],
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj",
         "projectName": "BadBoys.BLL",
-        "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj",
-        "packagesPath": "C:\\Users\\Денис\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.BLL\\obj\\",
+        "projectPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj",
+        "packagesPath": "C:\\Users\\38097\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Денис\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\38097\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -127,11 +32,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\App.Data.csproj": {
-                "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\App.Data\\App.Data.csproj"
-              },
-              "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj": {
-                "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj"
+              "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj": {
+                "projectPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj"
               }
             }
           }
@@ -146,11 +48,17 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -167,24 +75,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj": {
+    "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj",
         "projectName": "BadBoys.DAL",
-        "projectPath": "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj",
-        "packagesPath": "C:\\Users\\Денис\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Bad-Boys-Project\\src\\BadBoys.DAL\\obj\\",
+        "projectPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj",
+        "packagesPath": "C:\\Users\\38097\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Денис\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\38097\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -211,11 +119,30 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -232,7 +159,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

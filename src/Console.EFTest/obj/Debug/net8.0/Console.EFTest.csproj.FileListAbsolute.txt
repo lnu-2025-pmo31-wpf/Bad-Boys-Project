@@ -57,3 +57,12 @@ C:\Git\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\refint\Console.EFTes
 C:\Git\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.pdb
 C:\Git\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.genruntimeconfig.cache
 C:\Git\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\ref\Console.EFTest.dll
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.csproj.AssemblyReference.cache
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.AssemblyInfoInputs.cache
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.AssemblyInfo.cs
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.csproj.CoreCompileInputs.cache
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.sourcelink.json
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.dll
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\refint\Console.EFTest.dll
+C:\Users\38097\Bad-Boys-Project\src\Console.EFTest\obj\Debug\net8.0\Console.EFTest.pdb
