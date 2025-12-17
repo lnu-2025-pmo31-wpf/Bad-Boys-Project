@@ -1,19 +1,45 @@
 using System;
 using System.Windows;
 using BadBoys.BLL.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using BadBoys.DAL;
 
 namespace BadBoys.Presentation.WPF.Views
 {
     public partial class RegisterWindow : Window
     {
         private readonly UserService _userService;
-        
-        public RegisterWindow(UserService userService)
+
+        // Parameterless constructor for DI
+        public RegisterWindow()
         {
             InitializeComponent();
+            
+            // Get service from DI
+            if (App.Services != null)
+            {
+                _userService = App.Services.GetRequiredService<UserService>();
+            }
+            else
+            {
+                // Fallback if DI not available
+                var services = new ServiceCollection();
+                services.AddDbContext<AppDbContext>(options =>
+                    options.UseSqlite("Data Source=media.db"));
+                services.AddScoped<UserService>();
+                
+                var serviceProvider = services.BuildServiceProvider();
+                _userService = serviceProvider.GetRequiredService<UserService>();
+            }
+        }
+
+        // Constructor with service parameter (for DI)
+        public RegisterWindow(UserService userService) : this()
+        {
             _userService = userService;
         }
-        
+
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -21,52 +47,52 @@ namespace BadBoys.Presentation.WPF.Views
                 // Validation
                 if (string.IsNullOrWhiteSpace(txtUsername.Text))
                 {
-                    MessageBox.Show("Please enter a username", 
+                    MessageBox.Show("Please enter a username",
                         "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                
+
                 if (string.IsNullOrWhiteSpace(txtPassword.Password))
                 {
-                    MessageBox.Show("Please enter a password", 
+                    MessageBox.Show("Please enter a password",
                         "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                
+
                 if (txtPassword.Password != txtConfirmPassword.Password)
                 {
-                    MessageBox.Show("Passwords do not match", 
+                    MessageBox.Show("Passwords do not match",
                         "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                
+
                 if (txtPassword.Password.Length < 6)
                 {
-                    MessageBox.Show("Password must be at least 6 characters", 
+                    MessageBox.Show("Password must be at least 6 characters",
                         "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                
+
                 btnRegister.IsEnabled = false;
-                
+
                 var success = await _userService.RegisterAsync(txtUsername.Text, txtPassword.Password);
-                
+
                 if (success)
                 {
-                    MessageBox.Show("Registration successful! You can now login.", 
+                    MessageBox.Show("Registration successful! You can now login.",
                         "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.DialogResult = true;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Username already exists. Please choose a different username.", 
+                    MessageBox.Show("Username already exists. Please choose a different username.",
                         "Registration Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Registration error: {ex.Message}", 
+                MessageBox.Show($"Registration error: {ex.Message}",
                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
@@ -74,7 +100,7 @@ namespace BadBoys.Presentation.WPF.Views
                 btnRegister.IsEnabled = true;
             }
         }
-        
+
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;

@@ -1,10 +1,77 @@
 <Window x:Class="BadBoys.Presentation.WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BadBoys" Height="450" Width="800">
-
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BadBoys.Presentation.WPF"
+        mc:Ignorable="d"
+        Title="Personal Media Collection Manager" 
+        Height="700" Width="1100"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F0F0F0"/>
+                    <Setter Property="Foreground" Value="#3498DB"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#2C3E50" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Personal Media Collection" 
+                           Foreground="White" FontSize="18" FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+                
+                <TextBlock x:Name="UserInfoText" Margin="20,0,0,0" 
+                           Foreground="#ECF0F1" VerticalAlignment="Center"/>
+                
+                <Button x:Name="LogoutButton" Content="Logout" Margin="20,0,0,0"
+                        Padding="10,5" Background="#E74C3C" Foreground="White"
+                        BorderThickness="0" Click="LogoutButton_Click"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Navigation and Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Navigation Menu -->
+            <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="0,0,1,0">
+                <StackPanel Margin="10">
+                    <Button x:Name="MediaListButton" Content="📋 Media List" 
+                            Style="{StaticResource NavButtonStyle}" Click="MediaListButton_Click"/>
+                    <Button x:Name="StatisticsButton" Content="📊 Statistics" 
+                            Style="{StaticResource NavButtonStyle}" Click="StatisticsButton_Click"/>
+                    <Button x:Name="ExportButton" Content="📤 Export Data" 
+                            Style="{StaticResource NavButtonStyle}" Click="ExportButton_Click"/>
+                    <Button x:Name="SettingsButton" Content="⚙️ Settings" 
+                            Style="{StaticResource NavButtonStyle}" Click="SettingsButton_Click"/>
+                </StackPanel>
+            </Border>
+            
+            <!-- Content Frame -->
+            <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
-
 </Window>

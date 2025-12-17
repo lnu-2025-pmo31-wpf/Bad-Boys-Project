@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "T5z4Pz+QizM=",
+  "dgSpecHash": "RMAWQ+WXzDw=",
   "success": true,
   "projectFilePath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.DAL\\BadBoys.DAL.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\38097\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.10\\sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
+    "C:\\Users\\38097\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.composition\\7.0.0\\system.composition.7.0.0.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.composition.attributedmodel\\7.0.0\\system.composition.attributedmodel.7.0.0.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.composition.convention\\7.0.0\\system.composition.convention.7.0.0.nupkg.sha512",

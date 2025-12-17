@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QLcN0gAyqqQ=",
+  "dgSpecHash": "8blcGzl0AlQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.Presentation.WPF\\BadBoys.Presentation.WPF.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\38097\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.10\\sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\38097\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.diagnostics.diagnosticsource\\10.0.1\\system.diagnostics.diagnosticsource.10.0.1.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.1\\system.diagnostics.eventlog.10.0.1.nupkg.sha512",
     "C:\\Users\\38097\\.nuget\\packages\\system.io.pipelines\\10.0.1\\system.io.pipelines.10.0.1.nupkg.sha512",
