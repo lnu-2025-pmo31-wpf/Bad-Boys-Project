@@ -10,6 +10,7 @@
         "dependencies": {
           "BadBoys.BLL": "1.0.0",
           "BadBoys.DAL": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Sqlite": "9.0.11",
           "Microsoft.Extensions.DependencyInjection": "10.0.1",
           "Microsoft.Extensions.Hosting": "10.0.1"
         },

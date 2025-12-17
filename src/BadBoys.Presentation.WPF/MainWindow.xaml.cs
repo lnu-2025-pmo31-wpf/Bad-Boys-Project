@@ -6,13 +6,35 @@ namespace BadBoys.Presentation.WPF
 {
     public partial class MainWindow : Window
     {
-        public MainWindow(MainViewModel vm)
+        public MainWindow()
         {
             InitializeComponent();
-            DataContext = vm;
-
-            var page = App.Services.GetRequiredService<MediaListPage>();
-            MainFrame.Navigate(page);
+            
+            if (App.CurrentUser == null)
+            {
+                MessageBox.Show("Please login first");
+                this.Close();
+                return;
+            }
+            
+            this.Title = $"Media Manager - {App.CurrentUser.Username}";
+            LoadMediaListPage();
+        }
+        
+        private void LoadMediaListPage()
+        {
+            try
+            {
+                if (App.Services != null)
+                {
+                    var page = App.Services.GetRequiredService<MediaListPage>();
+                    MainFrame.Navigate(page);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading page: {ex.Message}");
+            }
         }
     }
 }

@@ -2426,6 +2426,7 @@
     "net9.0-windows7.0": [
       "BadBoys.BLL >= 1.0.0",
       "BadBoys.DAL >= 1.0.0",
+      "Microsoft.EntityFrameworkCore.Sqlite >= 9.0.11",
       "Microsoft.Extensions.DependencyInjection >= 10.0.1",
       "Microsoft.Extensions.Hosting >= 10.0.1"
     ]
@@ -2487,6 +2488,10 @@
       "net9.0-windows7.0": {
         "targetAlias": "net9.0-windows",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Sqlite": {
+            "target": "Package",
+            "version": "[9.0.11, )"
+          },
           "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[10.0.1, )"

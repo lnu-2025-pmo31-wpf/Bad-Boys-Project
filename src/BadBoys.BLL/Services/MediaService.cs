@@ -15,8 +15,9 @@ public class MediaService
 
     public async Task<List<Media>> GetAllAsync()
     {
-        return await _context.Media.ToListAsync();
-    }
+  	return await _context.Media
+             .Include(m => m.User)  // Include User data if needed
+             .ToListAsync();    }
 
     public async Task<List<Media>> SearchAsync(string query)
     {

@@ -1,15 +1,3 @@
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\bin\Debug\net9.0\BadBoys.DAL.deps.json
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\bin\Debug\net9.0\BadBoys.DAL.dll
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\bin\Debug\net9.0\BadBoys.DAL.pdb
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\BadBoys.DAL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\BadBoys.DAL.AssemblyInfoInputs.cache
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\BadBoys.DAL.AssemblyInfo.cs
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\BadBoys.DAL.csproj.CoreCompileInputs.cache
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\BadBoys.DAL.sourcelink.json
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\BadBoys.DAL.dll
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\refint\BadBoys.DAL.dll
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\BadBoys.DAL.pdb
-C:\Git\Bad-Boys-Project\src\BadBoys.DAL\obj\Debug\net9.0\ref\BadBoys.DAL.dll
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.DAL\bin\Debug\net9.0\BadBoys.DAL.deps.json
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.DAL\bin\Debug\net9.0\BadBoys.DAL.runtimeconfig.json
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.DAL\bin\Debug\net9.0\BadBoys.DAL.dll

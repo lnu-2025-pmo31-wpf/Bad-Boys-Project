@@ -1,14 +1,40 @@
-namespace BadBoys.DAL.Entities;
+using System.ComponentModel.DataAnnotations;
 
-public class Media
+namespace BadBoys.DAL.Entities
 {
-    public int Id { get; set; }
-    public string Title { get; set; } = "";
-    public string Description { get; set; } = "";
-    public string Genre { get; set; } = "";
-    public int Year { get; set; }
-    public string Type { get; set; } = ""; // Movies / Games / Music / Books
-    public int DurationMinutes { get; set; }
-    public double Rating { get; set; }
-    public string ImageUrl { get; set; } = "";
+    public class Media
+    {
+        public int Id { get; set; }
+        
+        [Required]
+        public string Title { get; set; } = string.Empty;
+        
+        public int Year { get; set; }
+        
+        [Required]
+        public string Type { get; set; } = string.Empty;
+        
+        public string Genre { get; set; } = string.Empty;
+        
+        public string Author { get; set; } = string.Empty;
+        
+        public string Description { get; set; } = string.Empty;
+        
+        [Range(0, 10)]
+        public double Rating { get; set; }
+        
+        public string Status { get; set; } = "Planned";
+        
+        public string Notes { get; set; } = string.Empty;
+        
+        public string CoverImagePath { get; set; } = string.Empty;
+        
+        public int DurationMinutes { get; set; }
+        
+        // Foreign key
+        public int UserId { get; set; } = 1;
+        
+        // Navigation property
+        public virtual User? User { get; set; }
+    }
 }
