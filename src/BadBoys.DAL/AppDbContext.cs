@@ -13,6 +13,11 @@ namespace BadBoys.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Explicitly set table names
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Media>().ToTable("Media");
+            modelBuilder.Entity<Tag>().ToTable("Tags");
+
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Username)
                 .IsUnique();
@@ -32,6 +37,13 @@ namespace BadBoys.DAL
                 .HasMany(m => m.Tags)
                 .WithOne(t => t.Media)
                 .HasForeignKey(t => t.MediaId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Configure User->Media relationship
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.MediaItems)
+                .WithOne(m => m.User)
+                .HasForeignKey(m => m.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);

@@ -76,9 +76,9 @@ C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\bin\Debug\net9.0-wi
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\bin\Debug\net9.0-windows\BadBoys.DAL.pdb
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\bin\Debug\net9.0-windows\BadBoys.BLL.pdb
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\BadBoys.Presentation.WPF.csproj.AssemblyReference.cache
-C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\MainWindow.baml
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\Views\EditMediaWindow.baml
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\Views\LoginWindow.baml
+C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\Views\MediaListPage.baml
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\Views\MediaListView.baml
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\Views\RegisterWindow.baml
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\MainWindow.g.cs
@@ -90,7 +90,7 @@ C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-wi
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\App.g.cs
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\BadBoys.Presentation.WPF_MarkupCompile.cache
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\BadBoys.Presentation.WPF_MarkupCompile.lref
-C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\Views\MediaListPage.baml
+C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\MainWindow.baml
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\BadBoys.Presentation.WPF.g.resources
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\BadBoys.Presentation.WPF.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\38097\Bad-Boys-Project\src\BadBoys.Presentation.WPF\obj\Debug\net9.0-windows\BadBoys.Presentation.WPF.AssemblyInfoInputs.cache

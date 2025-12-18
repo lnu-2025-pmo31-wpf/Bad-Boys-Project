@@ -1,3 +1,4 @@
+using System;
 using BadBoys.DAL;
 using BadBoys.DAL.Entities;
 using BadBoys.DAL.Enums;
@@ -27,8 +28,8 @@ public class MediaService
     {
         return await _context.Media
             .Include(m => m.Tags)
-            .Where(m => m.UserId == userId && 
-                   (m.Title.Contains(query) || 
+            .Where(m => m.UserId == userId &&
+                   (m.Title.Contains(query) ||
                     m.Description.Contains(query) ||
                     m.Author.Contains(query) ||
                     m.Genre.Contains(query) ||
@@ -53,7 +54,7 @@ public class MediaService
 
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            query = query.Where(m => m.Title.Contains(searchTerm) || 
+            query = query.Where(m => m.Title.Contains(searchTerm) ||
                                    m.Description.Contains(searchTerm) ||
                                    m.Author.Contains(searchTerm) ||
                                    m.Genre.Contains(searchTerm) ||
@@ -93,16 +94,32 @@ public class MediaService
 
     public async Task AddAsync(Media item)
     {
-        item.DateAdded = DateTime.Now;
-        _context.Media.Add(item);
-        await _context.SaveChangesAsync();
+        try
+        {
+            Console.WriteLine($"MediaService.AddAsync: Adding '{item.Title}' for UserId={item.UserId}");
+            item.DateAdded = DateTime.Now;
+            _context.Media.Add(item);
+            var result = await _context.SaveChangesAsync();
+            Console.WriteLine($"MediaService.AddAsync: SaveChanges returned {result} rows affected");
+            
+            // Verify it was saved
+            var savedItem = await _context.Media
+                .FirstOrDefaultAsync(m => m.Id == item.Id);
+            Console.WriteLine($"MediaService.AddAsync: Item saved with Id={savedItem?.Id}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"MediaService.AddAsync ERROR: {ex.Message}");
+            Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+            throw;
+        }
     }
 
     public async Task UpdateAsync(Media item)
     {
         if (item.Status == MediaStatus.Completed && !item.DateCompleted.HasValue)
             item.DateCompleted = DateTime.Now;
-            
+
         _context.Media.Update(item);
         await _context.SaveChangesAsync();
     }
@@ -134,9 +151,9 @@ public class MediaService
     public async Task<Dictionary<string, int>> GetStatisticsAsync(int userId)
     {
         var stats = new Dictionary<string, int>();
-        
+
         var userMedia = _context.Media.Where(m => m.UserId == userId);
-        
+
         stats["Total"] = await userMedia.CountAsync();
         stats["Movies"] = await userMedia.CountAsync(m => m.Type == MediaType.Movie);
         stats["TV Shows"] = await userMedia.CountAsync(m => m.Type == MediaType.TVShow);
@@ -144,13 +161,13 @@ public class MediaService
         stats["Books"] = await userMedia.CountAsync(m => m.Type == MediaType.Book);
         stats["Music"] = await userMedia.CountAsync(m => m.Type == MediaType.Music);
         stats["Other"] = await userMedia.CountAsync(m => m.Type == MediaType.Other);
-        
+
         stats["Completed"] = await userMedia.CountAsync(m => m.Status == MediaStatus.Completed);
         stats["In Progress"] = await userMedia.CountAsync(m => m.Status == MediaStatus.InProgress);
         stats["Planned"] = await userMedia.CountAsync(m => m.Status == MediaStatus.Planned);
         stats["On Hold"] = await userMedia.CountAsync(m => m.Status == MediaStatus.OnHold);
         stats["Dropped"] = await userMedia.CountAsync(m => m.Status == MediaStatus.Dropped);
-        
+
         return stats;
     }
 

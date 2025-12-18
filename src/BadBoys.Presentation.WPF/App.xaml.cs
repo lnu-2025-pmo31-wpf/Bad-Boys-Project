@@ -15,154 +15,112 @@ namespace BadBoys.Presentation.WPF
     {
         public static IServiceProvider? Services { get; private set; }
         public static User? CurrentUser { get; set; }
+        public static string DatabasePath { get; private set; } = "";
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            // Global exception handling
-            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
-            {
-                var ex = args.ExceptionObject as Exception;
-                MessageBox.Show($"Unhandled error: {ex?.Message}",
-                    "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            };
-
-            DispatcherUnhandledException += (sender, args) =>
-            {
-                MessageBox.Show($"UI Error: {args.Exception.Message}",
-                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                args.Handled = true;
-            };
-
             try
             {
-                var serviceCollection = new ServiceCollection();
-                ConfigureServices(serviceCollection);
-                Services = serviceCollection.BuildServiceProvider();
-
-                // Ensure database exists
-                EnsureDatabaseExists();
-
-                // Show login window
+                Console.WriteLine("=== STARTING ===");
+                
+                // Set database path - USE CURRENT DIRECTORY
+                DatabasePath = "media.db";  // SIMPLE - in current directory
+                Console.WriteLine($"Database: {DatabasePath}");
+                Console.WriteLine($"Full path: {Path.GetFullPath(DatabasePath)}");
+                
+                // Setup services
+                var services = new ServiceCollection();
+                
+                // SIMPLE connection string
+                services.AddDbContext<AppDbContext>(options =>
+                    options.UseSqlite($"Data Source={DatabasePath}"));
+                    
+                services.AddScoped<UserService>();
+                services.AddScoped<MediaService>();
+                
+                services.AddSingleton<MainWindow>();
+                services.AddSingleton<LoginWindow>();
+                services.AddTransient<RegisterWindow>();
+                services.AddTransient<MediaListPage>();
+                services.AddTransient<EditMediaWindow>();
+                
+                services.AddTransient<MainViewModel>();
+                services.AddTransient<MediaListViewModel>();
+                services.AddTransient<EditMediaViewModel>();
+                
+                Services = services.BuildServiceProvider();
+                
+                // MANUALLY CREATE DATABASE
+                CreateDatabaseManually();
+                
+                // Show login
                 var loginWindow = Services.GetRequiredService<LoginWindow>();
                 loginWindow.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Startup error: {ex.Message}",
-                    "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error: {ex.Message}", "Startup Failed", 
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 Shutdown(1);
             }
         }
-
-        private void EnsureDatabaseExists()
+        
+        private void CreateDatabaseManually()
         {
-            try
+            Console.WriteLine("=== CREATING DATABASE ===");
+            
+            // Delete if exists
+            if (File.Exists(DatabasePath))
             {
-                // First, copy database from project root to output directory if needed
-                var projectRootDb = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "..", "media.db");
-                var outputDb = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "media.db");
-                
-                if (File.Exists(projectRootDb) && (!File.Exists(outputDb) || new FileInfo(projectRootDb).Length > new FileInfo(outputDb).Length))
-                {
-                    File.Copy(projectRootDb, outputDb, true);
-                    Console.WriteLine($"Copied database from project root to output directory");
-                }
-                
-                var dbPath = outputDb;
-                
-                if (!File.Exists(dbPath))
-                {
-                    MessageBox.Show($"Database not found at: {dbPath}\nCreating new database...");
-                }
-
-                using var scope = Services!.CreateScope();
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-                // Ensure database is created
-                dbContext.Database.EnsureCreated();
-
-                // Seed the database
-                SeedDatabase(dbContext);
+                Console.WriteLine("Deleting old database...");
+                File.Delete(DatabasePath);
             }
-            catch (Exception ex)
+            
+            // Create database file
+            Console.WriteLine($"Creating database at: {Path.GetFullPath(DatabasePath)}");
+            
+            // Use DbContext to create database
+            using var scope = Services!.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            
+            // FORCE creation with raw SQL
+            context.Database.EnsureDeleted(); // Make sure it's gone
+            context.Database.EnsureCreated(); // Create with EF Core
+            
+            Console.WriteLine("Database created with EnsureCreated()");
+            
+            // Verify
+            var tables = context.Database.SqlQueryRaw<string>(
+                "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").ToList();
+            
+            Console.WriteLine($"Tables created: {tables.Count}");
+            foreach (var table in tables)
             {
-                MessageBox.Show($"Database error: {ex.Message}",
-                    "Database Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Console.WriteLine($"  - {table}");
             }
-        }
-
-        private void SeedDatabase(AppDbContext context)
-        {
-            // Check if users already exist
+            
+            // Add test user
             if (!context.Users.Any())
             {
-                // Create test user (password: test123)
-                using var sha256 = System.Security.Cryptography.SHA256.Create();
-                var bytes = System.Text.Encoding.UTF8.GetBytes("test123");
-                var hash = sha256.ComputeHash(bytes);
-                var hashString = Convert.ToBase64String(hash);
-
+                Console.WriteLine("Adding test user...");
+                
+                // Password hash for "test123"
                 var testUser = new User
                 {
                     Username = "test",
-                    PasswordHash = hashString,
+                    PasswordHash = "gRimlB3wg7/uxo9vOMyNQ5ggCHQzH0cQp4n7VFtM9jA=", // test123
                     Role = "User"
                 };
-
+                
                 context.Users.Add(testUser);
                 context.SaveChanges();
-
-                // Create test media item
-                var testMedia = new Media
-                {
-                    Title = "The Matrix",
-                    Year = 1999,
-                    Type = BadBoys.DAL.Enums.MediaType.Movie,
-                    Genre = "Sci-Fi",
-                    Author = "The Wachowskis",
-                    Publisher = "Warner Bros.",
-                    Description = "A computer hacker learns about the true nature of reality",
-                    Rating = 8.7,
-                    Status = BadBoys.DAL.Enums.MediaStatus.Completed,
-                    PersonalNotes = "Great movie!",
-                    UserId = 1,
-                    DateAdded = DateTime.Now
-                };
-
-                context.Media.Add(testMedia);
-                context.SaveChanges();
+                
+                Console.WriteLine($"User created: {testUser.Username} (ID: {testUser.Id})");
             }
-        }
-
-        private void ConfigureServices(IServiceCollection services)
-        {
-            // Use database in output directory (where the app runs)
-            var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "media.db");
             
-            // Debug output
-            Console.WriteLine($"Database path: {dbPath}");
-            Console.WriteLine($"Database exists: {File.Exists(dbPath)}");
-            
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite($"Data Source={dbPath}"));
-
-            // Register Services
-            services.AddScoped<UserService>();
-            services.AddScoped<MediaService>();
-
-            // Register Windows
-            services.AddSingleton<MainWindow>();
-            services.AddSingleton<LoginWindow>();
-            services.AddTransient<RegisterWindow>();
-            services.AddTransient<MediaListPage>();
-            services.AddTransient<EditMediaWindow>();
-
-            // Register ViewModels
-            services.AddTransient<MainViewModel>();
-            services.AddTransient<MediaListViewModel>();
-            services.AddTransient<EditMediaViewModel>();
+            Console.WriteLine("=== DATABASE READY ===");
         }
     }
 }

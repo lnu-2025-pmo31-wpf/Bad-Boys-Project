@@ -2,7 +2,7 @@ using BadBoys.Presentation.WPF.Commands;
 using BadBoys.DAL.Entities;
 using BadBoys.DAL.Enums;
 using BadBoys.BLL.Services;
-using BadBoys.DAL;  // ADDED FOR AppDbContext
+using BadBoys.DAL;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -57,7 +57,7 @@ namespace BadBoys.Presentation.WPF.ViewModels
             {
                 mediaService = App.Services.GetRequiredService<MediaService>();
             }
-            
+
             _mediaService = mediaService ?? throw new ArgumentNullException(nameof(mediaService));
 
             if (existingItem != null)
@@ -126,21 +126,31 @@ namespace BadBoys.Presentation.WPF.ViewModels
 
             if (_isNew)
             {
-                // ALWAYS use UserId = 1 for testing
-                _mediaItem.UserId = 1;
+                // CRITICAL FIX: Use the currently logged-in user, NOT hardcoded UserId = 1
+                if (App.CurrentUser == null)
+                {
+                    MessageBox.Show("ERROR: No user is logged in. Cannot save media. Please login again.",
+                        "Authentication Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    throw new InvalidOperationException("No user is logged in");
+                }
+
+                _mediaItem.UserId = App.CurrentUser.Id; // Use ACTUAL logged-in user ID
                 _mediaItem.DateAdded = DateTime.Now;
-                
-                Console.WriteLine($"SaveToEntity: Set UserId to {_mediaItem.UserId}");
+
+                Console.WriteLine($"DEBUG: SaveToEntity - New media - UserId={_mediaItem.UserId}, User='{App.CurrentUser.Username}'");
             }
             else
             {
                 // Keep existing UserId for updates
-                Console.WriteLine($"SaveToEntity: Keeping existing UserId {_mediaItem.UserId}");
+                Console.WriteLine($"DEBUG: SaveToEntity - Update media - Existing UserId={_mediaItem.UserId}");
             }
         }
 
         private async void Save(object? obj)
         {
+            Console.WriteLine("=== SAVE METHOD STARTED ===");
+            Console.WriteLine($"Current User: {(App.CurrentUser == null ? "NULL" : $"Id={App.CurrentUser.Id}, Username={App.CurrentUser.Username}")}");
+
             if (string.IsNullOrWhiteSpace(Title))
             {
                 MessageBox.Show("Title cannot be empty!");
@@ -151,7 +161,7 @@ namespace BadBoys.Presentation.WPF.ViewModels
             {
                 // Debug: Check database before save
                 Console.WriteLine("=== BEFORE SAVE DEBUG ===");
-                
+
                 // Get database context to check users
                 using var scope = App.Services?.CreateScope();
                 if (scope != null)
@@ -164,39 +174,48 @@ namespace BadBoys.Presentation.WPF.ViewModels
                         Console.WriteLine($"  User Id: {user.Id}, Username: {user.Username}");
                     }
                 }
-                
-                Console.WriteLine($"Current User from App: Id={App.CurrentUser?.Id}, Username={App.CurrentUser?.Username}");
-                
+
                 SaveToEntity();
-                
+
                 Console.WriteLine($"=== AFTER SaveToEntity ===");
                 Console.WriteLine($"Media UserId: {_mediaItem.UserId}");
                 Console.WriteLine($"Media Title: {_mediaItem.Title}");
                 Console.WriteLine($"Is New: {_isNew}");
 
                 if (_isNew)
+                {
+                    Console.WriteLine($"Calling MediaService.AddAsync for '{_mediaItem.Title}'...");
                     await _mediaService.AddAsync(_mediaItem);
+                    Console.WriteLine($"AddAsync completed successfully!");
+                }
                 else
+                {
+                    Console.WriteLine($"Calling MediaService.UpdateAsync for '{_mediaItem.Title}'...");
                     await _mediaService.UpdateAsync(_mediaItem);
+                    Console.WriteLine($"UpdateAsync completed successfully!");
+                }
 
                 CloseWindow(true);
             }
             catch (Exception ex)
             {
                 string errorMessage = $"Save failed: {ex.Message}";
-                
+                Console.WriteLine($"ERROR in Save: {ex.Message}");
+                Console.WriteLine($"StackTrace: {ex.StackTrace}");
+
                 // Show inner exception details
                 if (ex.InnerException != null)
                 {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
                     errorMessage += $"\n\nInner: {ex.InnerException.Message}";
-                    
+
                     // Add more detailed SQLite error info
                     if (ex.InnerException.Message.Contains("FOREIGN KEY"))
                     {
                         errorMessage += "\n\nFOREIGN KEY DETAILS:";
                         errorMessage += $"\n- Trying to insert Media with UserId: {_mediaItem.UserId}";
                         errorMessage += "\n- Checking if user exists...";
-                        
+
                         // Check if user exists
                         try
                         {
@@ -206,7 +225,7 @@ namespace BadBoys.Presentation.WPF.ViewModels
                                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                                 var userExists = dbContext.Users.Any(u => u.Id == _mediaItem.UserId);
                                 errorMessage += $"\n- User with Id={_mediaItem.UserId} exists: {userExists}";
-                                
+
                                 if (!userExists)
                                 {
                                     var allUsers = dbContext.Users.Select(u => u.Id).ToList();
@@ -220,8 +239,8 @@ namespace BadBoys.Presentation.WPF.ViewModels
                         }
                     }
                 }
-                
-                MessageBox.Show(errorMessage, "Save Error", 
+
+                MessageBox.Show(errorMessage, "Save Error",
                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
