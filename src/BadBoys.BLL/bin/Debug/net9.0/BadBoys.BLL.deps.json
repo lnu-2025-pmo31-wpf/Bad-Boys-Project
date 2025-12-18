@@ -346,7 +346,14 @@
       },
       "System.ComponentModel.Annotations/5.0.0": {},
       "System.Memory/4.5.3": {},
-      "System.Text.Json/9.0.11": {},
+      "System.Text.Json/9.0.11": {
+        "runtime": {
+          "lib/net9.0/System.Text.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1125.51716"
+          }
+        }
+      },
       "BadBoys.DAL/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.11",
@@ -356,7 +363,7 @@
         },
         "runtime": {
           "BadBoys.DAL.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

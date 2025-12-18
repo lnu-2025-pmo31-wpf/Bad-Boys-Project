@@ -7,9 +7,18 @@ namespace BadBoys.DAL
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Media> Media { get; set; }
+<<<<<<< HEAD
         public DbSet<Tag> Tags { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+=======
+<<<<<<< HEAD
+=======
+        public DbSet<Tag> Tags { get; set; }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+>>>>>>> 90296bdbfb94c37c3f89782c0b3305ab2db1bf34
+>>>>>>> af990ab39414d7c66ff21b591870331851dc4d49
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +31,11 @@ namespace BadBoys.DAL
                 .HasIndex(u => u.Username)
                 .IsUnique();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> af990ab39414d7c66ff21b591870331851dc4d49
             modelBuilder.Entity<Media>()
                 .Property(m => m.Type)
                 .HasConversion<string>();
@@ -39,6 +53,7 @@ namespace BadBoys.DAL
                 .HasForeignKey(t => t.MediaId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+<<<<<<< HEAD
             // Configure User->Media relationship
             modelBuilder.Entity<User>()
                 .HasMany(u => u.MediaItems)
@@ -46,6 +61,9 @@ namespace BadBoys.DAL
                 .HasForeignKey(m => m.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+=======
+>>>>>>> 90296bdbfb94c37c3f89782c0b3305ab2db1bf34
+>>>>>>> af990ab39414d7c66ff21b591870331851dc4d49
             base.OnModelCreating(modelBuilder);
         }
     }

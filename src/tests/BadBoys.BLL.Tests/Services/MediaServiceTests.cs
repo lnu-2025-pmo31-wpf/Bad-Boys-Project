@@ -15,7 +15,7 @@ namespace BadBoys.BLL.Tests.Services
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: dbName)
                 .Options;
-            
+
             return new AppDbContext(options);
         }
 
@@ -24,7 +24,7 @@ namespace BadBoys.BLL.Tests.Services
         {
             // Arrange
             using var context = CreateInMemoryDbContext("Test_GetAll");
-            
+
             // Створюємо користувача для зв'язку
             var user = new User 
             { 
@@ -34,7 +34,7 @@ namespace BadBoys.BLL.Tests.Services
                 Role = "User" 
             };
             context.Users.Add(user);
-            
+
             // Додаємо тестові дані з правильним UserId
             context.Media.Add(new Media 
             { 
@@ -50,7 +50,7 @@ namespace BadBoys.BLL.Tests.Services
                 Type = "Movie", 
                 UserId = 1  // Теж саме
             });
-            
+
             await context.SaveChangesAsync();
 
             var service = new MediaService(context);
@@ -83,7 +83,7 @@ namespace BadBoys.BLL.Tests.Services
         {
             // Arrange
             using var context = CreateInMemoryDbContext("Test_Add");
-            
+
             // Створюємо користувача
             context.Users.Add(new User 
             { 
@@ -92,9 +92,9 @@ namespace BadBoys.BLL.Tests.Services
                 PasswordHash = "hash" 
             });
             await context.SaveChangesAsync();
-            
+
             var service = new MediaService(context);
-            
+
             var newMedia = new Media 
             { 
                 Title = "New Movie", 
@@ -119,10 +119,10 @@ namespace BadBoys.BLL.Tests.Services
         {
             // Arrange
             using var context = CreateInMemoryDbContext("Test_Update");
-            
+
             // Створюємо користувача
             context.Users.Add(new User { Id = 1, Username = "testuser", PasswordHash = "hash" });
-            
+
             // Додаємо початкові дані
             var media = new Media 
             { 
@@ -136,7 +136,7 @@ namespace BadBoys.BLL.Tests.Services
             await context.SaveChangesAsync();
 
             var service = new MediaService(context);
-            
+
             // Отримуємо медіа з бази та оновлюємо
             var mediaToUpdate = await context.Media.FindAsync(1);
             mediaToUpdate.Title = "Updated Title";
@@ -157,10 +157,10 @@ namespace BadBoys.BLL.Tests.Services
         {
             // Arrange
             using var context = CreateInMemoryDbContext("Test_Delete");
-            
+
             // Створюємо користувача
             context.Users.Add(new User { Id = 1, Username = "testuser", PasswordHash = "hash" });
-            
+
             var media = new Media 
             { 
                 Id = 1, 
@@ -187,10 +187,10 @@ namespace BadBoys.BLL.Tests.Services
         {
             // Arrange
             using var context = CreateInMemoryDbContext("Test_Search");
-            
+
             // Створюємо користувача
             context.Users.Add(new User { Id = 1, Username = "testuser", PasswordHash = "hash" });
-            
+
             context.Media.AddRange(
                 new Media { Id = 1, Title = "The Matrix", Genre = "Sci-Fi", UserId = 1 },
                 new Media { Id = 2, Title = "Inception", Genre = "Thriller", UserId = 1 },
@@ -202,14 +202,14 @@ namespace BadBoys.BLL.Tests.Services
 
             // Act - Пошук за назвою
             var resultByTitle = await service.SearchAsync("Matrix");
-            
+
             // Act - Пошук за жанром
             var resultByGenre = await service.SearchAsync("Sci-Fi");
 
             // Assert
             Assert.Single(resultByTitle);
             Assert.Equal("The Matrix", resultByTitle[0].Title);
-            
+
             Assert.Equal(2, resultByGenre.Count); // Matrix і Interstellar
         }
 
@@ -218,10 +218,10 @@ namespace BadBoys.BLL.Tests.Services
         {
             // Arrange
             using var context = CreateInMemoryDbContext("Test_SearchEmpty");
-            
+
             // Створюємо користувача
             context.Users.Add(new User { Id = 1, Username = "testuser", PasswordHash = "hash" });
-            
+
             context.Media.AddRange(
                 new Media { Id = 1, Title = "Movie 1", UserId = 1 },
                 new Media { Id = 2, Title = "Movie 2", UserId = 1 }
@@ -242,10 +242,10 @@ namespace BadBoys.BLL.Tests.Services
         {
             // Arrange
             using var context = CreateInMemoryDbContext("Test_SearchNoMatch");
-            
+
             // Створюємо користувача
             context.Users.Add(new User { Id = 1, Username = "testuser", PasswordHash = "hash" });
-            
+
             context.Media.Add(new Media { Id = 1, Title = "Test Movie", UserId = 1 });
             await context.SaveChangesAsync();
 
