@@ -1,98 +1,9 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\Bad-Boys-Project\\tests\\BadBoys.BLL.Tests\\BadBoys.BLL.Tests.csproj": {}
+    "C:\\Users\\38097\\Bad-Boys-Project\\tests\\BadBoys.BLL.Tests\\BadBoys.BLL.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Git\\Bad-Boys-Project\\tests\\BadBoys.BLL.Tests\\BadBoys.BLL.Tests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Git\\Bad-Boys-Project\\tests\\BadBoys.BLL.Tests\\BadBoys.BLL.Tests.csproj",
-        "projectName": "BadBoys.BLL.Tests",
-        "projectPath": "C:\\Git\\Bad-Boys-Project\\tests\\BadBoys.BLL.Tests\\BadBoys.BLL.Tests.csproj",
-        "packagesPath": "C:\\Users\\Денис\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Bad-Boys-Project\\tests\\BadBoys.BLL.Tests\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\Денис\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net9.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
-      },
-      "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore.InMemory": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
-<<<<<<< HEAD
-            "Microsoft.EntityFrameworkCore.Design": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[9.0.11, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[10.0.1, )"
-            },
-            "System.ComponentModel.Annotations": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "C:\\Users\\38097\\Bad-Boys-Project\\tests\\BadBoys.BLL.Tests\\BadBoys.BLL.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -120,11 +31,7 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {
-              "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj": {
-                "projectPath": "C:\\Users\\38097\\Bad-Boys-Project\\src\\BadBoys.BLL\\BadBoys.BLL.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -143,8 +50,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-=======
->>>>>>> af990ab39414d7c66ff21b591870331851dc4d49
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.11.1, )"
@@ -186,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

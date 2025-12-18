@@ -15,7 +15,6 @@ namespace BadBoys.Presentation.WPF
     {
         public static IServiceProvider? Services { get; private set; }
         public static User? CurrentUser { get; set; }
-        public static string DatabasePath { get; private set; } = "";
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -23,104 +22,182 @@ namespace BadBoys.Presentation.WPF
 
             try
             {
-                Console.WriteLine("=== STARTING ===");
+                Console.WriteLine("=== APPLICATION STARTING ===");
                 
-                // Set database path - USE CURRENT DIRECTORY
-                DatabasePath = "media.db";  // SIMPLE - in current directory
-                Console.WriteLine($"Database: {DatabasePath}");
-                Console.WriteLine($"Full path: {Path.GetFullPath(DatabasePath)}");
-                
-                // Setup services
-                var services = new ServiceCollection();
-                
-                // SIMPLE connection string
-                services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlite($"Data Source={DatabasePath}"));
-                    
-                services.AddScoped<UserService>();
-                services.AddScoped<MediaService>();
-                
-                services.AddSingleton<MainWindow>();
-                services.AddSingleton<LoginWindow>();
-                services.AddTransient<RegisterWindow>();
-                services.AddTransient<MediaListPage>();
-                services.AddTransient<EditMediaWindow>();
-                
-                services.AddTransient<MainViewModel>();
-                services.AddTransient<MediaListViewModel>();
-                services.AddTransient<EditMediaViewModel>();
-                
-                Services = services.BuildServiceProvider();
-                
-                // MANUALLY CREATE DATABASE
-                CreateDatabaseManually();
-                
-                // Show login
+                var serviceCollection = new ServiceCollection();
+                ConfigureServices(serviceCollection);
+                Services = serviceCollection.BuildServiceProvider();
+
+                // Initialize database (DOES NOT DELETE EXISTING)
+                InitializeDatabase();
+
+                // Show login window
                 var loginWindow = Services.GetRequiredService<LoginWindow>();
                 loginWindow.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}", "Startup Failed", 
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Startup error: {ex.Message}", 
+                    "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Shutdown(1);
             }
         }
-        
-        private void CreateDatabaseManually()
+
+        private void InitializeDatabase()
         {
-            Console.WriteLine("=== CREATING DATABASE ===");
-            
-            // Delete if exists
-            if (File.Exists(DatabasePath))
+            try
             {
-                Console.WriteLine("Deleting old database...");
-                File.Delete(DatabasePath);
-            }
-            
-            // Create database file
-            Console.WriteLine($"Creating database at: {Path.GetFullPath(DatabasePath)}");
-            
-            // Use DbContext to create database
-            using var scope = Services!.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            
-            // FORCE creation with raw SQL
-            context.Database.EnsureDeleted(); // Make sure it's gone
-            context.Database.EnsureCreated(); // Create with EF Core
-            
-            Console.WriteLine("Database created with EnsureCreated()");
-            
-            // Verify
-            var tables = context.Database.SqlQueryRaw<string>(
-                "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").ToList();
-            
-            Console.WriteLine($"Tables created: {tables.Count}");
-            foreach (var table in tables)
-            {
-                Console.WriteLine($"  - {table}");
-            }
-            
-            // Add test user
-            if (!context.Users.Any())
-            {
-                Console.WriteLine("Adding test user...");
+                Console.WriteLine("=== INITIALIZING DATABASE ===");
                 
-                // Password hash for "test123"
-                var testUser = new User
+                using var scope = Services!.CreateScope();
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                
+                // Get database path for logging
+                var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "media.db");
+                Console.WriteLine($"Database path: {dbPath}");
+                Console.WriteLine($"Database exists: {File.Exists(dbPath)}");
+                
+                if (File.Exists(dbPath))
                 {
-                    Username = "test",
-                    PasswordHash = "gRimlB3wg7/uxo9vOMyNQ5ggCHQzH0cQp4n7VFtM9jA=", // test123
-                    Role = "User"
-                };
+                    Console.WriteLine("Existing database found. Ensuring it's up to date...");
+                    
+                    try
+                    {
+                        // Try to apply any pending migrations
+                        context.Database.Migrate();
+                        Console.WriteLine("Migrations applied (if any)");
+                    }
+                    catch (Exception migrateEx)
+                    {
+                        Console.WriteLine($"Note: Could not apply migrations: {migrateEx.Message}");
+                        Console.WriteLine("Using existing schema...");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No database found. Creating new one...");
+                    context.Database.EnsureCreated();
+                    Console.WriteLine("Database created");
+                    
+                    // Add test user only for NEW database
+                    AddTestUserIfNeeded(context);
+                }
                 
-                context.Users.Add(testUser);
-                context.SaveChanges();
+                // Log database stats
+                LogDatabaseInfo(context);
                 
-                Console.WriteLine($"User created: {testUser.Username} (ID: {testUser.Id})");
+                Console.WriteLine("=== DATABASE READY ===");
             }
-            
-            Console.WriteLine("=== DATABASE READY ===");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR initializing database: {ex.Message}");
+                throw;
+            }
+        }
+
+        private void AddTestUserIfNeeded(AppDbContext context)
+        {
+            try
+            {
+                if (!context.Users.Any())
+                {
+                    Console.WriteLine("Adding test user to new database...");
+                    
+                    string HashPassword(string password)
+                    {
+                        using var sha256 = System.Security.Cryptography.SHA256.Create();
+                        var bytes = System.Text.Encoding.UTF8.GetBytes(password);
+                        var hash = sha256.ComputeHash(bytes);
+                        return Convert.ToBase64String(hash);
+                    }
+                    
+                    var testUser = new User
+                    {
+                        Username = "test",
+                        PasswordHash = HashPassword("test123"),
+                        Role = "User"
+                    };
+                    
+                    context.Users.Add(testUser);
+                    context.SaveChanges();
+                    
+                    Console.WriteLine($"Test user created: {testUser.Username} (ID: {testUser.Id})");
+                    
+                    // Optional: Add a test media item
+                    var testMedia = new Media
+                    {
+                        Title = "The Matrix",
+                        Year = 1999,
+                        Type = BadBoys.DAL.Enums.MediaType.Movie,
+                        Genre = "Sci-Fi",
+                        Author = "The Wachowskis",
+                        Publisher = "Warner Bros.",
+                        Description = "A computer hacker learns about reality",
+                        Rating = 8.7,
+                        Status = BadBoys.DAL.Enums.MediaStatus.Completed,
+                        PersonalNotes = "Great movie!",
+                        UserId = testUser.Id,
+                        DateAdded = DateTime.Now
+                    };
+                    
+                    context.Media.Add(testMedia);
+                    context.SaveChanges();
+                    Console.WriteLine($"Test media created: {testMedia.Title}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Note: Could not add test user: {ex.Message}");
+            }
+        }
+
+        private void LogDatabaseInfo(AppDbContext context)
+        {
+            try
+            {
+                var userCount = context.Users.Count();
+                var mediaCount = context.Media.Count();
+                Console.WriteLine($"Database has {userCount} user(s) and {mediaCount} media item(s)");
+                
+                if (userCount > 0)
+                {
+                    Console.WriteLine("Users:");
+                    foreach (var user in context.Users)
+                    {
+                        Console.WriteLine($"  {user.Id}: {user.Username}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Note: Could not log database info: {ex.Message}");
+            }
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            // Use database in output directory
+            var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "media.db");
+            Console.WriteLine($"Configuring database connection to: {dbPath}");
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlite($"Data Source={dbPath}"));
+
+            // Register Services
+            services.AddScoped<UserService>();
+            services.AddScoped<MediaService>();
+
+            // Register Windows
+            services.AddSingleton<MainWindow>();
+            services.AddSingleton<LoginWindow>();
+            services.AddTransient<RegisterWindow>();
+            services.AddTransient<MediaListPage>();
+            services.AddTransient<EditMediaWindow>();
+
+            // Register ViewModels
+            services.AddTransient<MainViewModel>();
+            services.AddTransient<MediaListViewModel>();
+            services.AddTransient<EditMediaViewModel>();
         }
     }
 }

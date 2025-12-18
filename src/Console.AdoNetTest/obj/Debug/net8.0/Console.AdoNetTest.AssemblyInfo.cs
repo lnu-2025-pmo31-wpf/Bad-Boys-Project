@@ -13,15 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Console.AdoNetTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90296bdbfb94c37c3f89782c0b3305ab2db1bf34")]
-=======
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+289ef977f1554d6c58301bd6a8fdae2342ca6d8b")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf728688ed598f89140d3ea135960569cf9d0eb2")]
->>>>>>> 90296bdbfb94c37c3f89782c0b3305ab2db1bf34
->>>>>>> af990ab39414d7c66ff21b591870331851dc4d49
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b97575e5fc46f0b0c0c709a279ba956a5167156")]
 [assembly: System.Reflection.AssemblyProductAttribute("Console.AdoNetTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Console.AdoNetTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
