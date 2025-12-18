@@ -12,8 +12,13 @@ TRACE;DEBUG;NET;NET9_0;NETCOREAPP
 C:\Git\Bad-Boys-Project\src\BadBoys.Presentation.WPF\App.xaml
 6-485192475
 
+<<<<<<< HEAD
 14-308933687
 241694948462
+=======
+15-383302069
+240906738254
+>>>>>>> 90296bdbfb94c37c3f89782c0b3305ab2db1bf34
 MainWindow.xaml;Views\EditMediaWindow.xaml;Views\LoginWindow.xaml;Views\MediaListPage.xaml;Views\MediaListView.xaml;Views\RegisterWindow.xaml;
 
 False

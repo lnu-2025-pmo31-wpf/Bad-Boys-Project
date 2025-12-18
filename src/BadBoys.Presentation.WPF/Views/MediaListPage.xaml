@@ -1,36 +1,123 @@
 <Page x:Class="BadBoys.Presentation.WPF.Views.MediaListPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:vm="clr-namespace:BadBoys.Presentation.WPF.ViewModels"
-      Title="MediaList">
-
+      Title="Media List"
+      Background="White">
+    
     <Grid Margin="10">
-        <DockPanel>
-
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0 0 0 10">
-                <Button Content="Refresh" Command="{Binding RefreshCommand}" Width="90" Margin="0 0 10 0"/>
-                <Button Content="Add" Command="{Binding AddCommand}" Width="90"/>
-            </StackPanel>
-
-            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}" />
-                        <GridViewColumn Header="Title" Width="200" DisplayMemberBinding="{Binding Title}" />
-                        <GridViewColumn Header="Type" Width="120" DisplayMemberBinding="{Binding Type}" />
-                        <GridViewColumn Header="Rating" Width="80" DisplayMemberBinding="{Binding Rating}" />
-                    </GridView>
-                </ListView.View>
-
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Edit" Command="{Binding EditCommand}"/>
-                        <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-
-            </ListView>
-
-        </DockPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Title -->
+        <TextBlock Grid.Row="0" Text="My Media Collection" 
+                   FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+        
+        <!-- Filter Controls -->
+        <Border Grid.Row="1" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="0,0,0,10" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Search Box -->
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,10,5">
+                    <Label Content="Search:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBox Width="200" 
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                             VerticalContentAlignment="Center"/>
+                </StackPanel>
+                
+                <!-- Quick Filters -->
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                    <Label Content="Type:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <ComboBox Width="100" Margin="0,0,10,0"
+                              ItemsSource="{Binding MediaTypes}"
+                              SelectedItem="{Binding SelectedType}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    
+                    <Label Content="Genre:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <ComboBox Width="120" Margin="0,0,10,0"
+                              ItemsSource="{Binding AllGenres}"
+                              SelectedItem="{Binding SelectedGenre}"/>
+                    
+                    <Label Content="Status:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <ComboBox Width="100" Margin="0,0,10,0"
+                              ItemsSource="{Binding StatusTypes}"
+                              SelectedItem="{Binding SelectedStatus}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    
+                    <Label Content="Year:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBox Width="60" Margin="0,0,5,0"
+                             Text="{Binding MinYear, UpdateSourceTrigger=PropertyChanged}"
+                             ToolTip="Min Year"/>
+                    <Label Content="-" VerticalAlignment="Center"/>
+                    <TextBox Width="60" Margin="5,0,10,0"
+                             Text="{Binding MaxYear, UpdateSourceTrigger=PropertyChanged}"
+                             ToolTip="Max Year"/>
+                    
+                    <Label Content="Rating:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBox Width="60" Margin="0,0,5,0"
+                             Text="{Binding MinRating, UpdateSourceTrigger=PropertyChanged}"
+                             ToolTip="Min Rating (0-10)"/>
+                    <Label Content="-" VerticalAlignment="Center"/>
+                    <TextBox Width="60" Margin="5,0,10,0"
+                             Text="{Binding MaxRating, UpdateSourceTrigger=PropertyChanged}"
+                             ToolTip="Max Rating (0-10)"/>
+                </StackPanel>
+                
+                <!-- Action Buttons -->
+                <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+                    <Button Content="Clear Filters" Width="100" Margin="0,0,0,5"
+                            Command="{Binding ClearFiltersCommand}"/>
+                    <Button Content="Refresh" Width="100" Margin="0,0,0,5"
+                            Command="{Binding RefreshCommand}"/>
+                    <Button Content="Add New" Width="100" 
+                            Command="{Binding AddCommand}" Background="#3498DB" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <!-- Media List -->
+        <ListView Grid.Row="2" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Title" Width="250" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Type" Width="80" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Year" Width="60" DisplayMemberBinding="{Binding Year}"/>
+                    <GridViewColumn Header="Genre" Width="100" DisplayMemberBinding="{Binding Genre}"/>
+                    <GridViewColumn Header="Status" Width="90" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Header="Rating" Width="60" DisplayMemberBinding="{Binding Rating, StringFormat={}{0:N1}}"/>
+                    <GridViewColumn Header="Added" Width="100" DisplayMemberBinding="{Binding DateAdded, StringFormat={}{0:yyyy-MM-dd}}"/>
+                </GridView>
+            </ListView.View>
+            
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Edit" Command="{Binding EditCommand}"/>
+                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+        
     </Grid>
 </Page>
