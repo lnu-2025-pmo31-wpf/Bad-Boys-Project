@@ -618,7 +618,14 @@
       },
       "System.Memory/4.5.3": {},
       "System.Reflection.Metadata/1.6.0": {},
-      "System.Text.Json/9.0.11": {},
+      "System.Text.Json/9.0.11": {
+        "runtime": {
+          "lib/net9.0/System.Text.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1125.51716"
+          }
+        }
+      },
       "xunit/2.9.2": {
         "dependencies": {
           "xunit.analyzers": "1.16.0",
@@ -679,7 +686,7 @@
         },
         "runtime": {
           "BadBoys.BLL.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -692,7 +699,7 @@
         },
         "runtime": {
           "BadBoys.DAL.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

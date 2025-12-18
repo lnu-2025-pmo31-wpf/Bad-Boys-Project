@@ -718,7 +718,7 @@
         },
         "runtime": {
           "BadBoys.BLL.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -731,7 +731,7 @@
         },
         "runtime": {
           "BadBoys.DAL.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

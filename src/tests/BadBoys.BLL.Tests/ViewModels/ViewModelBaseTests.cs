@@ -67,7 +67,7 @@ namespace BadBoys.BLL.Tests.ViewModels
             var viewModel = new TestViewModel();
             bool eventRaised = false;
             string? propertyName = null;
-            
+
             viewModel.PropertyChanged += (sender, args) =>
             {
                 eventRaised = true;
@@ -89,7 +89,7 @@ namespace BadBoys.BLL.Tests.ViewModels
             var viewModel = new TestViewModel();
             bool eventRaised = false;
             string? propertyName = null;
-            
+
             viewModel.PropertyChanged += (sender, args) =>
             {
                 eventRaised = true;
@@ -110,7 +110,7 @@ namespace BadBoys.BLL.Tests.ViewModels
             // Arrange
             var viewModel = new TestViewModel();
             viewModel.TestProperty = "Initial Value";
-            
+
             bool eventRaised = false;
             viewModel.PropertyChanged += (sender, args) =>
             {
@@ -131,7 +131,7 @@ namespace BadBoys.BLL.Tests.ViewModels
             var viewModel = new TestViewModel();
             bool eventRaised = false;
             string customPropertyName = "CustomProperty";
-            
+
             viewModel.PropertyChanged += (sender, args) =>
             {
                 eventRaised = true;
@@ -151,7 +151,7 @@ namespace BadBoys.BLL.Tests.ViewModels
             // Arrange
             var viewModel = new TestViewModel();
             var changedProperties = new List<string>();
-            
+
             viewModel.PropertyChanged += (sender, args) =>
             {
                 if (args.PropertyName != null)
@@ -178,10 +178,10 @@ namespace BadBoys.BLL.Tests.ViewModels
         {
             // Arrange
             var viewModel = new TestViewModel();
-            
+
             // Act & Assert - Не має бути винятку
             var exception = Record.Exception(() => viewModel.OnPropertyChanged(propertyName!));
-            
+
             Assert.Null(exception);
         }
     }

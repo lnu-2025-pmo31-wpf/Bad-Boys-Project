@@ -14,7 +14,7 @@ namespace BadBoys.BLL.Tests.Services
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: dbName)
                 .Options;
-            
+
             return new AppDbContext(options);
         }
 
@@ -30,7 +30,7 @@ namespace BadBoys.BLL.Tests.Services
 
             // Assert
             Assert.True(result);
-            
+
             var user = await context.Users.FirstOrDefaultAsync(u => u.Username == "newuser");
             Assert.NotNull(user);
             Assert.Equal("newuser", user.Username);
@@ -44,7 +44,7 @@ namespace BadBoys.BLL.Tests.Services
             // Arrange
             using var context = CreateInMemoryDbContext("Test_RegisterDuplicate");
             var service = new UserService(context);
-            
+
             // Перша реєстрація
             await service.RegisterAsync("existinguser", "password123");
 
@@ -53,7 +53,7 @@ namespace BadBoys.BLL.Tests.Services
 
             // Assert
             Assert.False(result);
-            
+
             // Перевіряємо що лише один користувач існує
             var users = await context.Users.Where(u => u.Username == "existinguser").ToListAsync();
             Assert.Single(users);
@@ -65,7 +65,7 @@ namespace BadBoys.BLL.Tests.Services
             // Arrange
             using var context = CreateInMemoryDbContext("Test_LoginValid");
             var service = new UserService(context);
-            
+
             await service.RegisterAsync("testuser", "correctpassword");
 
             // Act
@@ -82,7 +82,7 @@ namespace BadBoys.BLL.Tests.Services
             // Arrange
             using var context = CreateInMemoryDbContext("Test_LoginWrongPass");
             var service = new UserService(context);
-            
+
             await service.RegisterAsync("testuser", "correctpassword");
 
             // Act
@@ -140,7 +140,7 @@ namespace BadBoys.BLL.Tests.Services
             // Arrange
             using var context1 = CreateInMemoryDbContext("Test_Hash1");
             using var context2 = CreateInMemoryDbContext("Test_Hash2");
-            
+
             var service1 = new UserService(context1);
             var service2 = new UserService(context2);
 
